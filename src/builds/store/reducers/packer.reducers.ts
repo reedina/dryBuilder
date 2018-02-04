@@ -7,16 +7,32 @@ export interface PackerState {
    loading: boolean;
 }
 
-
+// Initial State
 export const initialState: PackerState = {
    entities: [
-          {access_key: 'access_one', secret_key: 'secret_one'},
-          {access_key: 'access_two', secret_key: 'secret_two'}
-        ],
+      {  builders:
+           [
+                { access_key: 'access_one',
+                  secret_key: 'secret_one',
+                  type: 'type_name',
+                  region: 'region_name',
+                  instance_type: 'instance_name',
+                  ssh_username: 'ssh_username',
+                  ami_name: 'ami_name',
+                  source_ami_filter: {
+                    filters: { virtualization: 'hvm', name: 'ubuntu', 'root-device-type': 'ebs'},
+                    owners: ['owners'],
+                    most_recent: true
+                  }
+                },
+           ]
+      }
+  ],
   loaded: false,
   loading: false
 };
 
+// Reducer
 export function reducer(
     state = initialState,
     action: fromPacker.PackerActions

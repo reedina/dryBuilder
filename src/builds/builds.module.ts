@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule} from '@ngrx/effects';
+import { reducers } from './store';
+
 
 import { BuildsComponent } from './containers/builds/builds.component';
 
@@ -24,7 +26,8 @@ export const ROUTES: Routes = [
   CommonModule,
   ReactiveFormsModule,
   HttpClientModule,
-  RouterModule.forChild(ROUTES)
+  RouterModule.forChild(ROUTES),
+  StoreModule.forFeature('builds', reducers),
  ],
   declarations: [...fromContainers.containers],
   exports: [...fromContainers.containers ]

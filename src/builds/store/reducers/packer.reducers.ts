@@ -10,11 +10,14 @@ export interface PackerState {
 // Initial State
 export const initialState: PackerState = {
    entities: [
-      {  builders:
+      {  friendly_name: 'packer template 01',
+         builders:
            [
-                { access_key: 'access_one',
+                {
+                  friendly_name: 'simple builder aws',
+                  access_key: 'access_one',
                   secret_key: 'secret_one',
-                  type: 'type_name',
+                  type: 'amazon-ebs',
                   region: 'region_name',
                   instance_type: 'instance_name',
                   ssh_username: 'ssh_username',
@@ -25,6 +28,10 @@ export const initialState: PackerState = {
                     most_recent: true
                   }
                 },
+                {
+                  friendly_name: 'simple builder azure',
+                  type: 'azure-arm'
+                }
            ]
       }
   ],

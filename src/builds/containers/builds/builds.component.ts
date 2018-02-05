@@ -9,22 +9,23 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['builds.component.css'],
   template: `
     <div>Hello from builds component</div>
-    <div *ngFor="let p of (packer$ | async)">
-         {{p.builders[0].access_key}} <br>
-         {{p.builders[0].secret_key}}  <br>
-        {{ p.builders[0].source_ami_filter.filters.name}} <br>
 
+    <div *ngFor="let template of (packerTemplates$ | async); let i = index">
+              Packer Template Friendly Name: <b>{{ template.friendly_name}}</b>
+              <div *ngFor="let build of template.builders; let i = index">
+                       Builder Friendly Name: {{ build.friendly_name }}
+              </div>
     </div>
   `
 })
 export class BuildsComponent  implements OnInit {
 
-  packer$: Observable<Packer[]>;
+  packerTemplates$: Observable<Packer[]>;
 
   constructor(private store: Store<fromStore.BuildState>) {}
 
   ngOnInit() {
      console.log(this.store.select('packer'));
-     this.packer$ = this.store.select(fromStore.getPackerEntities);
+     this.packerTemplates$ = this.store.select(fromStore.getPackerEntities);
   }
 }

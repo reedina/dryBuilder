@@ -1,7 +1,9 @@
-export interface Builder {
+// Amazon Builders
+export interface AmazonEbsBuilder {
+  friendly_name?: string;
+  type: string;
   access_key: string;
   secret_key: string;
-  type: string;
   region: string;
   instance_type: string;
   ssh_username: string;
@@ -13,6 +15,19 @@ export interface Builder {
   };
 }
 
+// Azure Builders
+export interface AzureArmBuilder {
+  friendly_name?: string;
+  type: string;
+}
+
+// Builder Types
+export type BuilderTypes =
+| AmazonEbsBuilder
+| AzureArmBuilder;
+
+
 export interface Packer {
-  builders: Builder[];
+  friendly_name?: string;
+  builders: BuilderTypes[];
 }

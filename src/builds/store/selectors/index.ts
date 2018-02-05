@@ -1,1 +1,1 @@
-export * from './packer.selectors';
+export * from './packer-template.selectors';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Packer } from '../../models/packer.model';
+import { PackerTemplate } from '../../models/packer-template.model';
 
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../store';
@@ -20,12 +20,12 @@ import { Observable } from 'rxjs/Observable';
 })
 export class BuildsComponent  implements OnInit {
 
-  packerTemplates$: Observable<Packer[]>;
+  packerTemplates$: Observable<PackerTemplate[]>;
 
   constructor(private store: Store<fromStore.BuildState>) {}
 
   ngOnInit() {
      console.log(this.store.select('packer'));
-     this.packerTemplates$ = this.store.select(fromStore.getPackerEntities);
+     this.packerTemplates$ = this.store.select(fromStore.getPackerTemplateEntities);
   }
 }

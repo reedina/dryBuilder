@@ -1,5 +1,6 @@
 // Amazon Builders
 export interface AmazonEbsBuilder {
+  id?: number;
   friendly_name?: string;
   type: string;
   access_key: string;
@@ -17,6 +18,7 @@ export interface AmazonEbsBuilder {
 
 // Azure Builders
 export interface AzureArmBuilder {
+  id?: number;
   friendly_name?: string;
   type: string;
 }
@@ -27,7 +29,8 @@ export type BuilderTypes =
 | AzureArmBuilder;
 
 
-export interface Packer {
+export interface PackerTemplate {
+  id?: number;
   friendly_name?: string;
   builders: BuilderTypes[];
 }

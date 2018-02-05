@@ -1,1 +1,1 @@
-export * from './packer.actions';
+export * from './packer-template.actions';

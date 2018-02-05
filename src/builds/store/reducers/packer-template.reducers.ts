@@ -1,14 +1,14 @@
-import * as fromPacker from '../actions/packer.actions';
-import { Packer } from '../../models/packer.model';
+import * as fromPacker from '../actions/packer-template.actions';
+import { PackerTemplate } from '../../models/packer-template.model';
 
-export interface PackerState {
-   entities: Packer[];
+export interface PackerTemplateState {
+   entities: PackerTemplate[];
    loaded: boolean;
    loading: boolean;
 }
 
 // Initial State
-export const initialState: PackerState = {
+export const initialState: PackerTemplateState = {
    entities: [
       {  friendly_name: 'packer template 01',
          builders:
@@ -42,17 +42,17 @@ export const initialState: PackerState = {
 // Reducer
 export function reducer(
     state = initialState,
-    action: fromPacker.PackerActions
+    action: fromPacker.PackerTemplateActions
 ) {
     switch ( action.type ) {
-      case fromPacker.LOAD_PACKER: {
+      case fromPacker.LOAD_PACKER_TEMPLATE: {
           return {
             ...state,
             loading: true
           };
       } // end case
 
-      case fromPacker.LOAD_PACKER_SUCCESS: {
+      case fromPacker.LOAD_PACKER_TEMPLATE_SUCCESS: {
         const packer = action.payload;
         const entities = [...state.entities, ...packer];
 
@@ -64,7 +64,7 @@ export function reducer(
         };
       } // end case
 
-      case fromPacker.LOAD_PACKER_FAIL: {
+      case fromPacker.LOAD_PACKER_TEMPLATE_FAIL: {
         return {
             ...state,
             loading: false,
@@ -78,6 +78,6 @@ export function reducer(
 
 // Selector Functions
 // Given Entity return slice of entity state
-export const getPackerEntities = (state: PackerState) => state.entities;
-export const getPackerLoading = (state: PackerState) => state.loading;
-export const getPackerLoaded = (state: PackerState) => state.loaded;
+export const getPackerTemplateEntities = (state: PackerTemplateState) => state.entities;
+export const getPackerTemplateLoading = (state: PackerTemplateState) => state.loading;
+export const getPackerTemplateLoaded = (state: PackerTemplateState) => state.loaded;
